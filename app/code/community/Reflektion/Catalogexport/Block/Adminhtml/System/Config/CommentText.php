@@ -8,11 +8,16 @@
  * @description  To add comment in system config fields
  */
 
-class Reflektion_Catalogexport_Block_Adminhtml_System_Config_CommentText extends Mage_Adminhtml_Block_System_Config_Form_Fieldset
-
+class Reflektion_Catalogexport_Block_Adminhtml_System_Config_CommentText
+    extends Mage_Adminhtml_Block_System_Config_Form_Fieldset
 {
-   public function render(Varien_Data_Form_Element_Abstract $element)
+
+
+    public function render(Varien_Data_Form_Element_Abstract $element)
     {
         return $element->getComment();
-    }
-}
+
+    }//end render()
+
+
+}//end class

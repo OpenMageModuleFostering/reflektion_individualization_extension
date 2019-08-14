@@ -8,13 +8,24 @@
  * @license      https://opensource.org/licenses/OSL-3.0
  * @description  To enable or disable module and feed generation
  */
-class Reflektion_Catalogexport_Model_System_Config_EnableToggle {
+class Reflektion_Catalogexport_Model_System_Config_EnableToggle
+{
 
-    public function toOptionArray() {
+
+    public function toOptionArray()
+    {
         return array(
-            array('value' => 'enabled', 'label' => Mage::helper('adminhtml')->__('Enabled')),
-            array('value' => 'disabled', 'label' => Mage::helper('adminhtml')->__('Disabled')),
-        );
-    }
+                array(
+                 'value' => 'enabled',
+                 'label' => Mage::helper('adminhtml')->__('Enabled'),
+                ),
+                array(
+                 'value' => 'disabled',
+                 'label' => Mage::helper('adminhtml')->__('Disabled'),
+                ),
+               );
 
-}
+    }//end toOptionArray()
+
+
+}//end class

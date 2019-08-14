@@ -1,5 +1,4 @@
 <?php
-
 /**
  * @category     Reflektion
  * @package      Reflektion_Catalogexport
@@ -10,27 +9,108 @@
  */
 $installer = $this;
 $installer->startSetup();
-
-$installer->run("
-	DROP TABLE IF EXISTS `reflektion_job`;
-
-	CREATE TABLE `reflektion_job` (
-	  `job_id` int unsigned NOT NULL AUTO_INCREMENT,
-	  `website_id` smallint(5) unsigned NOT NULL,
-	  `dependent_on_job_id` int unsigned,	  
-	  `min_entity_id` int unsigned,	  
-	  `type` varchar(40) NOT NULL,
-	  `feed_type` varchar(40) NOT NULL,
-	  `status` int(11) NOT NULL,
-	  `scheduled_at` datetime DEFAULT NULL,
-	  `started_at` datetime DEFAULT NULL,
-	  `ended_at` datetime DEFAULT NULL,
-	  `error_message` varchar(64) NOT NULL,	  
-	  PRIMARY KEY (`job_id`),
-	  INDEX `indx_export_type` (`type`),
-	  INDEX `indx_export_entity` (`feed_type`),
-	  INDEX `indx_export_status` (`status`)
-	) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-");
+$table = $installer->getConnection()->newTable($installer->getTable('reflektion/job'))
+    ->addColumn(
+        'job_id',
+        Varien_Db_Ddl_Table::TYPE_INTEGER,
+        null,
+        array(
+         'unsigned' => true,
+         'nullable' => false,
+         'primary'  => true,
+         'identity' => true,
+        ),
+        'Job Id'
+    )
+    ->addColumn(
+        'website_id',
+        Varien_Db_Ddl_Table::TYPE_SMALLINT,
+        6,
+        array(
+         'unsigned' => true,
+         'nullable' => false,
+        ),
+        'Website Id'
+    )
+    ->addColumn(
+        'dependent_on_job_id',
+        Varien_Db_Ddl_Table::TYPE_INTEGER,
+        null,
+        array('unsigned' => true),
+        'Dependent On Job Id'
+    )
+    ->addColumn(
+        'min_entity_id',
+        Varien_Db_Ddl_Table::TYPE_INTEGER,
+        null,
+        array('unsigned' => true),
+        'Min Entity Id'
+    )
+    ->addColumn(
+        'type',
+        Varien_Db_Ddl_Table::TYPE_VARCHAR,
+        40,
+        array('nullable' => false),
+        'Type'
+    )
+    ->addColumn(
+        'feed_type',
+        Varien_Db_Ddl_Table::TYPE_VARCHAR,
+        40,
+        array('nullable' => false),
+        'Feed Type'
+    )
+    ->addColumn(
+        'status',
+        Varien_Db_Ddl_Table::TYPE_INTEGER,
+        11,
+        array('nullable' => false),
+        'Status'
+    )
+    ->addColumn(
+        'scheduled_at',
+        Varien_Db_Ddl_Table::TYPE_DATETIME,
+        null,
+        array('nullable' => true),
+        'Scheduled At'
+    )
+    ->addColumn(
+        'started_at',
+        Varien_Db_Ddl_Table::TYPE_DATETIME,
+        null,
+        array('nullable' => true),
+        'Started At'
+    )
+    ->addColumn(
+        'ended_at',
+        Varien_Db_Ddl_Table::TYPE_DATETIME,
+        null,
+        array('nullable' => true),
+        'Ended At'
+    )
+    ->addColumn(
+        'error_message',
+        Varien_Db_Ddl_Table::TYPE_VARCHAR,
+        64,
+        array('nullable' => false),
+        'Error Message'
+    )
+    ->addIndex(
+        $installer->getIdxName(
+            'reflektion/job',
+            array(
+             'type',
+             'feed_type',
+             'status',
+            )
+        ),
+        array(
+         'type',
+         'feed_type',
+         'status',
+        )
+    )
+    ->setComment('reflektion/job entity table');
+$installer->getConnection()->createTable($table);
 
 $installer->endSetup();

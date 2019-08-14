@@ -6,9 +6,10 @@
  * @website      http://www.reflektion.com/ <http://www.reflektion.com/>
  * @createdOn    02 Mar 2016
  * @license      https://opensource.org/licenses/OSL-3.0
- * @description  CSV files operations - create, open, reopen, close and write 
+ * @description  CSV files operations - create, open, reopen, close and write
  */
-class Reflektion_Catalogexport_Helper_Csvfile extends Mage_Core_Helper_Abstract {
+class Reflektion_Catalogexport_Helper_Csvfile extends Mage_Core_Helper_Abstract
+{
 
     private $_filename;
     private $_handle;
@@ -16,28 +17,34 @@ class Reflektion_Catalogexport_Helper_Csvfile extends Mage_Core_Helper_Abstract 
     private $_errorMessage;
     private $_columnHeaders;
 
-    public function __construct() {
-        $this->_filename = null;
-        $this->_handle = null;
-        $this->_path = null;
+
+    public function __construct()
+    {
+        $this->_filename     = null;
+        $this->_handle       = null;
+        $this->_path         = null;
         $this->_errorMessage = null;
-    }
+
+    }//end __construct()
+
 
     /**
      * Open file
-     * @param array  $columnHeaders An array of column header names, one for each column
-     * @param string $filename fully qualified filename + path. (directory must be writable)
-     * @return  boolean
+     *
+     * @param  array  $columnHeaders An array of column header names, one for each column
+     * @param  string $filename      fully qualified filename + path. (directory must be writable)
+     * @return boolean
      */
-    public function open($filename, array $columnHeaders) {
+    public function open($filename, array $columnHeaders)
+    {
         $this->_columnHeaders = $columnHeaders;
-        $this->_filename = $filename;
+        $this->_filename      = $filename;
 
         try {
             // Open file
             $this->_handle = fopen($this->_filename, 'w');
             // Build header row string
-            $rowString = implode(",", $this->encodeFields($columnHeaders)) . "\r\n";
+            $rowString = implode(",", $this->encodeFields($columnHeaders))."\r\n";
             // Write row to file
             $result = fwrite($this->_handle, $rowString);
         } catch (Exception $e) {
@@ -46,16 +53,20 @@ class Reflektion_Catalogexport_Helper_Csvfile extends Mage_Core_Helper_Abstract 
         }
 
         return true;
-    }
+
+    }//end open()
+
 
     /**
      * Re Open existing file
+     *
      * @param  string $filename fully qualified filename + path. (directory must be writable)
-     * @return  boolean
+     * @return boolean
      */
-    public function reopen($filename, array $columnHeaders) {
+    public function reopen($filename, array $columnHeaders)
+    {
         $this->_columnHeaders = $columnHeaders;
-        $this->_filename = $filename;
+        $this->_filename      = $filename;
 
         try {
             // Reopen file
@@ -66,12 +77,15 @@ class Reflektion_Catalogexport_Helper_Csvfile extends Mage_Core_Helper_Abstract 
         }
 
         return true;
-    }
+
+    }//end reopen()
+
 
     /**
      * Close file
      */
-    public function close() {
+    public function close()
+    {
         try {
             fclose($this->_handle);
         } catch (Exception $e) {
@@ -80,15 +94,19 @@ class Reflektion_Catalogexport_Helper_Csvfile extends Mage_Core_Helper_Abstract 
         }
 
         return true;
-    }
+
+    }//end close()
+
 
     /**
      * Write row to file
      *
-     * @param  array $rowValues An associative array of columns => values, cells for columns not included in this row are left empty
-     * @return  boolean
+     * @param  array $rowValues An associative array of columns => values, cells for columns not included in this
+     *         row are left empty
+     * @return boolean
      */
-    public function writeRow(array $rowValues) {
+    public function writeRow(array $rowValues)
+    {
         try {
             // Filter
             $selectedRowValues = array();
@@ -99,10 +117,11 @@ class Reflektion_Catalogexport_Helper_Csvfile extends Mage_Core_Helper_Abstract 
                     $selectedRowValues[] = "";
                 }
             }
+
             // Convert to utf8
             $convertedRowValues = $this->encodeFields($selectedRowValues);
             // Build row string
-            $rowString = implode(",", $convertedRowValues) . "\r\n";
+            $rowString = implode(",", $convertedRowValues)."\r\n";
             // Write row to file
             $result = fwrite($this->_handle, $rowString);
             // Check result
@@ -112,29 +131,35 @@ class Reflektion_Catalogexport_Helper_Csvfile extends Mage_Core_Helper_Abstract 
         } catch (Exception $e) {
             Mage::logException($e);
             return false;
-        }
+        }//end try
 
         return true;
-    }
+
+    }//end writeRow()
+
 
     /**
      * Convert strings in array to Utf8 and encode for CSV file usage
+     *
      * @param  array $values
-     * @return  array $converted
+     * @return array $converted
      */
-    private function encodeFields(array $values) {
+    private function encodeFields(array $values)
+    {
         $converted = array();
         foreach ($values as $value) {
             // Encode in utf8
             $newVal = utf8_encode($value);
             $newVal = str_replace('"', '""', $newVal);
             // Delimiter
-            $newVal = '"' . $newVal . '"';
+            $newVal = '"'.$newVal.'"';
             // Converted array
             array_push($converted, $newVal);
         }
 
         return $converted;
-    }
 
-}
+    }//end encodeFields()
+
+
+}//end class

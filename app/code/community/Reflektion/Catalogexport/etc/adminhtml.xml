@@ -58,8 +58,11 @@
                         <sort_order>1000</sort_order>
                         <children>
                             <export translate="title">
-                                <title>Reflektion</title>
+                                <title>Generate Feeds</title>
                             </export>
+                            <job translate="title">
+                                <title>Feeds in Queue</title>
+                            </job>
                         </children>
                     </reflektion>
                 </children>

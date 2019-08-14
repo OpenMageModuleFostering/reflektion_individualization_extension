@@ -6,27 +6,32 @@
  * @website      http://www.reflektion.com/ <http://www.reflektion.com/>
  * @createdOn    02 Mar 2016
  * @license      https://opensource.org/licenses/OSL-3.0
- * 
  */
-class Reflektion_Catalogexport_Helper_Data extends Mage_Core_Helper_Abstract {
+class Reflektion_Catalogexport_Helper_Data extends Mage_Core_Helper_Abstract
+{
 
     const LOG_FILE = 'reflektion.log';
 
     /*
-     * Example of how logging should be done in this extension :
-     * Mage::helper('reflektion')->log($message, Zend_Log::ERR, Reflektion_Catalogexport_Helper_Data::LOG_FILE);
+        * Example of how logging should be done in this extension :
+        * Mage::helper('reflektion')->log($message, Zend_Log::ERR, Reflektion_Catalogexport_Helper_Data::LOG_FILE);
      */
 
-    public function log($message, $level = null, $file = null, $force = false) {
+
+    public function log($message, $level = null, $file = null, $force = false)
+    {
         $force = $force ||
                 (Mage::getStoreConfig('reflektion_datafeeds/advanced/force_logging') !== "disabled");
         Mage::log($message, $level, $file, $force);
-    }
+
+    }//end log()
+
 
     /**
      * Validate feed configuration settings for one website or all websites
      */
-    public function validateFeedConfiguration($websiteId = null) {
+    public function validateFeedConfiguration($websiteId = null)
+    {
         $websites = array();
         if ($websiteId) {
             $websites[] = $websiteId;
@@ -37,57 +42,71 @@ class Reflektion_Catalogexport_Helper_Data extends Mage_Core_Helper_Abstract {
             }
         }
 
-        //Track if feeds enabled for any website
+        // Track if feeds enabled for any website
         $bFeedsEnabled = false;
         foreach ($websites as $curWebsiteId) {
             // If config is enabled
-            if (Mage::app()->getWebsite($curWebsiteId)->getConfig('reflektion_datafeeds/general/allfeedsenabled') == 'enabled') {
+            $configEn = 'reflektion_datafeeds/general/allfeedsenabled';
+            if (Mage::app()->getWebsite($curWebsiteId)->getConfig($configEn) == 'enabled') {
                 $bFeedsEnabled = true;
 
                 try {
                     // Get hostname, port & credentials
-                    $sftpHost = Mage::app()->getWebsite($curWebsiteId)->getConfig('reflektion_datafeeds/connect/hostname');
-                    $sftpPort = Mage::app()->getWebsite($curWebsiteId)->getConfig('reflektion_datafeeds/connect/port');
-                    $sftpUser = Mage::app()->getWebsite($curWebsiteId)->getConfig('reflektion_datafeeds/connect/username');
-                    $sftpPassword = Mage::app()->getWebsite($curWebsiteId)->getConfig('reflektion_datafeeds/connect/password');
+                    $websiteConf  = Mage::app()->getWebsite($curWebsiteId);
+                    $sftpHost     = $websiteConf->getConfig('reflektion_datafeeds/connect/hostname');
+                    $sftpPort     = $websiteConf->getConfig('reflektion_datafeeds/connect/port');
+                    $sftpUser     = $websiteConf->getConfig('reflektion_datafeeds/connect/username');
+                    $sftpPassword = Mage::helper('core')->decrypt(
+                        $websiteConf->getConfig('reflektion_datafeeds/connect/password')
+                    );
                 } catch (Exception $e) {
                     Mage::logException($e);
-                    Mage::helper('reflektion')->log($e->getMessage(), Zend_Log::ERR, Reflektion_Catalogexport_Helper_Data::LOG_FILE);
-                    Mage::throwException('Error looking up feed transfer connectivity parameters for website id: ' . $curWebsiteId);
+                    Mage::helper('reflektion')
+                        ->log($e->getMessage(), Zend_Log::ERR, Reflektion_Catalogexport_Helper_Data::LOG_FILE);
+                    Mage::throwException(
+                        'Error looking up feed transfer connectivity parameters for website id: '.$curWebsiteId
+                    );
                 }
+
                 // Check SFTP credentials
                 if (strlen($sftpHost) <= 0) {
-                    Mage::throwException('SFTP host (' . $sftpHost . ') is invalid for website id: ' . $curWebsiteId);
+                    Mage::throwException('SFTP host ('.$sftpHost.') is invalid for website id: '.$curWebsiteId);
                 }
+
                 if (strlen($sftpPort) <= 0 || $sftpPort < 1 || $sftpPort > 65535) {
-                    Mage::throwException('SFTP port (' . $sftpPort . ') is invalid for website id: ' . $curWebsiteId);
+                    Mage::throwException('SFTP port ('.$sftpPort.') is invalid for website id: '.$curWebsiteId);
                 }
+
                 if (strlen($sftpUser) <= 0) {
-                    Mage::throwException('SFTP user (' . $sftpUser . ') is invalid for website id: ' . $curWebsiteId);
+                    Mage::throwException('SFTP user ('.$sftpUser.') is invalid for website id: '.$curWebsiteId);
                 }
+
                 if (strlen($sftpPassword) <= 0) {
-                    Mage::throwException('SFTP password is invalid for website id: ' . $curWebsiteId);
+                    Mage::throwException('SFTP password is invalid for website id: '.$curWebsiteId);
                 }
-            }
-        }
+            }//end if
+        }//end foreach
 
         // Send error message
         if (!$bFeedsEnabled) {
             Mage::throwException('Data feeds not enabled');
         }
-    }
+
+    }//end validateFeedConfiguration()
+
 
     /**
      *  Description  To get the Categories list with breadcrum
      */
-    function getTreeCategories($parentId) {
+    public function getTreeCategories($parentId)
+    {
 
-        $allCats = Mage::getModel('catalog/category')->getCollection()
+        $allCats   = Mage::getModel('catalog/category')->getCollection()
                 ->addAttributeToSelect('*')
                 ->addAttributeToFilter('is_active', '1')
                 ->addAttributeToFilter('include_in_menu', '1')
                 ->addAttributeToFilter('parent_id', array('eq' => $parentId));
-
+        $this->str = '';
         foreach ($allCats as $category) {
             $this->str .= $category->getName();
             $this->allCat[$category->getId()] = $this->str;
@@ -99,7 +118,10 @@ class Reflektion_Catalogexport_Helper_Data extends Mage_Core_Helper_Abstract {
                 $this->str = '';
             }
         }
-        return $this->allCat;
-    }
 
-}
+        return $this->allCat;
+
+    }//end getTreeCategories()
+
+
+}//end class

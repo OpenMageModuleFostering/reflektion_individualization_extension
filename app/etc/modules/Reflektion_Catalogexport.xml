@@ -4,7 +4,7 @@
     <Reflektion_Catalogexport>
       <active>true</active>
       <codePool>community</codePool>
-      <version>1.0.0</version>
+      <version>1.0.5</version>
     </Reflektion_Catalogexport>
   </modules>
 </config>

@@ -1,27 +1,36 @@
 <?xml version="1.0"?>
 <package>
     <name>Reflektion_Individualization_Extension</name>
-    <version>1.0.0</version>
+    <version>1.0.5</version>
     <stability>stable</stability>
     <license uri="https://opensource.org/licenses/osl-3.0.php">Open Software License</license>
     <channel>community</channel>
     <extends/>
     <summary>Reflektion Individualization Extension</summary>
-    <description>Reflektion Catalogexport &#xD;
--&gt; Generate and transfer your magento catalog product CSV to Reflektion SFTP. &#xD;
--&gt; Website level export.&#xD;
--&gt; Select Product Attributes to transfer at your website level.</description>
-    <notes>This is the first public release of the Reflektion Catalogexport Module&#xD;
-This extension contains following feature&#xD;
--&gt; Generate and transfer your magento catalog product CSV to Reflektion SFTP. &#xD;
--&gt; Website level export.&#xD;
--&gt; Select Product Attributes to transfer at your website level.&#xD;
+    <description>MAJOR HIGHLIGHTS AND IMPROVEMENTS 	&#xD;
 &#xD;
-Easy to handle and configure. </notes>
+- Compatible with Magento Enterprise versions 1.11.x to 1.14.x&#xD;
+- Performance increased&#xD;
+&#xD;
+&#xD;
+FIXES&#xD;
+&#xD;
+- Access Control List issue&#xD;
+- Issues fixed to enhance performance</description>
+    <notes>MAJOR HIGHLIGHTS AND IMPROVEMENTS 	&#xD;
+&#xD;
+- Compatible with Magento Enterprise versions 1.11.x to 1.14.x&#xD;
+- Performance increased&#xD;
+&#xD;
+&#xD;
+FIXES&#xD;
+&#xD;
+- Access Control List issue&#xD;
+- Issues fixed to enhance performance</notes>
     <authors><author><name>Amar</name><user>Reflektion</user><email>amar.chokhawala@reflektion.com</email></author></authors>
-    <date>2016-03-24</date>
-    <time>14:55:59</time>
-    <contents><target name="magecommunity"><dir name="Reflektion"><dir name="Catalogexport"><dir name="Block"><dir name="Adminhtml"><dir name="Export"><dir name="Grid"><dir name="Renderer"><file name="Action.php" hash="b3b9199977244654a6fda64b6ff63258"/></dir><file name=".DS_Store" hash="f5e5eb9d8f2bd07a4f0a291eaaf961e1"/></dir><file name="Grid.php" hash="cd365e0068b3e7334a9e1202f7bad93b"/><file name=".DS_Store" hash="85c0eee10740cff52e6ed937e88a6a47"/></dir><file name="Export.php" hash="41bbb64df606d65b19a02ce7b64ce747"/><dir name="Job"><file name="Grid.php" hash="97d23b5f9f99d94bb2f872d692eb82fd"/></dir><file name="Job.php" hash="092d92f6205fca2d9f19546de3ac52be"/><dir name="System"><dir name="Config"><file name="CommentText.php" hash="c9d005c2fbbf475d0c300cf09e0bba93"/><file name=".DS_Store" hash="194577a7e20bdcc7afbb718f502c134c"/></dir><file name=".DS_Store" hash="ecc285cdf6cd604b73665019d3cc59d9"/></dir><file name=".DS_Store" hash="a7747cd360c14d7cd70dd0a58487e5e3"/></dir><file name=".DS_Store" hash="391e9dc787419a8e50faa38a500fc901"/></dir><dir name="Helper"><file name="Csvfile.php" hash="31cc46cb9d9d6cffdc02e8810e476890"/><file name="Data.php" hash="9f394a3f9b522ac293863d16c6051ca4"/><file name="SftpConnection.php" hash="11ccf7e1bf17e6349f77796c18ebe4ff"/><file name=".DS_Store" hash="4b7b4bd8d1321e13694bee3f8ab310b7"/></dir><dir name="Model"><dir name="Feed"><file name="Base.php" hash="4ea3b61176fee497140efd0ba7a48490"/><file name="Product.php" hash="6821cf58dc0d44e0e20735abf54574cb"/><file name=".DS_Store" hash="4562d2af77da971301bd80a89876ca5d"/></dir><file name="Generatefeeds.php" hash="bd4f075f2df599235d19e9474a23c968"/><file name="Job.php" hash="31357f187786d954bf49c096c6640d63"/><file name="Layout.php" hash="ce5d1aff535ce7e915c58d4c0a49bf44"/><dir name="Mysql4"><dir name="Job"><file name="Collection.php" hash="6d11119cc6977eb048f8684124b5d11f"/></dir><file name="Job.php" hash="470e008a894919f3750d76b84bbc723a"/><file name=".DS_Store" hash="d02ffe64c6894d5852d5194f1a99f570"/></dir><file name="Observer.php" hash="f7afc3f2204e6021ae8d72ee7e569326"/><dir name="System"><dir name="Config"><file name="Cron.php" hash="541d079c8c895c2d8c1804221067c9ff"/><file name="EnableToggle.php" hash="f634245689001ab6355e759677e4b542"/><file name="ProductAttributes.php" hash="da97bd3ee4cdf145b208b5773f6aad32"/></dir><dir name="Validate"><file name="ProductAttributes.php" hash="87ee014d30083d235670ab259d0b303d"/></dir><file name=".DS_Store" hash="1c045337730e5065ba09ce6640066142"/></dir><file name="Transferfeeds.php" hash="069a934c3e9c9d524e58edffad9ec97e"/><file name=".DS_Store" hash="6eb6caae94dd0ea8150e5f9f45bed6b3"/></dir><dir name="controllers"><dir name="Adminhtml"><file name="ExportController.php" hash="a5b29d83b11782b5b69ba71cf0f8d0f3"/><file name="JobController.php" hash="245ef2bbb904f6334c3f2f3b5a447d24"/></dir><file name=".DS_Store" hash="34aac0486e4893257aa1d865f97615f2"/></dir><dir name="etc"><file name="adminhtml.xml" hash="0ee309ab4300a8c218c62edc4203dffe"/><file name="config.xml" hash="211f0d74fa851703ae1fb652ad62e250"/><file name="system.xml" hash="e17bd23e6e1175b8737b7cb8b6b8dcbc"/></dir><dir name="sql"><dir name="reflektion_setup"><file name="mysql4-install-1.0.0.php" hash="41d35e6b847202cf6c8adddafc413a56"/></dir><file name=".DS_Store" hash="12354d0e1f8f17f4a540f0f987f96491"/></dir><file name=".DS_Store" hash="a693bdb537706fea3365ceb2117c6082"/></dir><file name=".DS_Store" hash="323da3616e354a9acd210829171524f4"/></dir></target><target name="magedesign"><dir name="adminhtml"><dir name="default"><dir name="default"><dir name="layout"><file name="reflektion.xml" hash="8e111b6a81750b38bf7b75cc4f9172ec"/></dir></dir></dir></dir></target><target name="mageetc"><dir name="modules"><file name="Reflektion_Catalogexport.xml" hash="c8558ad019d72517eef1516801828b37"/></dir></target></contents>
+    <date>2016-11-03</date>
+    <time>12:36:20</time>
+    <contents><target name="magecommunity"><dir name="Reflektion"><dir name="Catalogexport"><dir name="Block"><dir name="Adminhtml"><dir name="Export"><dir name="Grid"><dir name="Renderer"><file name="Action.php" hash="8cfdbd74115747329c1bf4a37c305e5f"/></dir></dir><file name="Grid.php" hash="53de8c1d7361b3326707548406628652"/></dir><file name="Export.php" hash="1b9aa1d945f2f524024bf6da091054c4"/><dir name="Job"><file name="Grid.php" hash="07b92f9d81cb75a98a86518ab8f00813"/></dir><file name="Job.php" hash="a0d86c2dc69ce00d64c5e60b6e023854"/><dir name="System"><dir name="Config"><file name="CommentText.php" hash="6a6429d2c09f4908de1248821467d8e4"/></dir></dir></dir></dir><dir name="Helper"><file name="Csvfile.php" hash="2758a9c1c851dd729d33b419b5c4661a"/><file name="Data.php" hash="7ec7ff0f7248f89e98482291ba9890a0"/><file name="SftpConnection.php" hash="7faf438ad5394c39764c2a97df0d5424"/></dir><dir name="Model"><dir name="Feed"><file name="Base.php" hash="908a1e10aed857073f08c8759b6db631"/><file name="Product.php" hash="ac562c54f390ce718ba3283ed0038363"/></dir><file name="Generatefeeds.php" hash="68d0a2ec113c6a41f081759802f3b18d"/><file name="Job.php" hash="8b4bc070b0000f7595a40172284a2efa"/><file name="Layout.php" hash="1517215bf85ae5e4d6ee03378498cb6a"/><dir name="Mysql4"><dir name="Job"><file name="Collection.php" hash="7ad38af7c67655e892786fb9c81b00a2"/></dir><file name="Job.php" hash="3e9e086e2d2588b5b0320f982385fc1e"/></dir><file name="Observer.php" hash="904710061a8357cfdf2598ea5fd2c86a"/><dir name="System"><dir name="Config"><file name="Cron.php" hash="87e8d535a65d69031026c0a314cf573c"/><file name="EnableToggle.php" hash="1290a06669cf0a7bb976263c6f95c76c"/><file name="ProductAttributes.php" hash="a61cecaa2c75d5e16fb6fdf72bc97b08"/></dir><dir name="Validate"><file name="ProductAttributes.php" hash="7cfc50bb32146c2aae3f2486cefed085"/></dir></dir><file name="Transferfeeds.php" hash="8e1ca05aa52a07c6fc284d895aacc5f9"/></dir><dir name="controllers"><dir name="Adminhtml"><file name="ExportController.php" hash="39c2bf93cc410d64c7f8652a50a74081"/><file name="JobController.php" hash="819c6f77a51b4991292604c382b81ad5"/></dir></dir><dir name="etc"><file name="adminhtml.xml" hash="ae63206cec83b8750e77f92d5c5e9cc3"/><file name="config.xml" hash="1710e46c694983c02eeceb96da539ee0"/><file name="system.xml" hash="974c45609aae85f7d88bba662059c589"/></dir><dir name="sql"><dir name="reflektion_setup"><file name="mysql4-install-1.0.0.php" hash="d94aff06ad136a36df9b5f4d3389b1a4"/></dir></dir></dir></dir></target><target name="mageetc"><dir name="modules"><file name="Reflektion_Catalogexport.xml" hash="2d238aea1ceafc200455fa3b51c48c49"/></dir></target><target name="magedesign"><dir name="adminhtml"><dir name="default"><dir name="default"><dir name="layout"><file name="reflektion.xml" hash="8e111b6a81750b38bf7b75cc4f9172ec"/></dir></dir></dir></dir></target></contents>
     <compatible/>
     <dependencies><required><php><min>5.4.0</min><max>5.6.18</max></php></required></dependencies>
 </package>
