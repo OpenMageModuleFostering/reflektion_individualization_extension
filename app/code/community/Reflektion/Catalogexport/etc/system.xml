@@ -1,0 +1,173 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @category     Reflektion
+ * @package      Reflektion_Catalogexport
+ * @website      http://www.reflektion.com/ <http://www.reflektion.com/>
+ * @createdOn    02 Mar 2016
+ * @license      https://opensource.org/licenses/OSL-3.0
+ * @description  System configurations
+ */
+-->
+<config>
+    <tabs>
+        <reflektion translate="label" module="reflektion">
+            <label><![CDATA[<div style="text-transform:none;padding-left:0px;">Reflektion</div>]]></label>
+            <sort_order>150</sort_order>
+        </reflektion>
+    </tabs>
+
+    <sections>
+        <reflektion_datafeeds translate="label" module="reflektion">
+            <label>Data Feeds Configuration</label>
+            <tab>reflektion</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>3310</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <general translate="label">
+                    <label>General</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>0</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <allfeedsenabled translate="label">
+                            <label>Data Feeds Enabled</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>reflektion/system_config_enableToggle</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Enable/disable all data feeds</comment>
+                        </allfeedsenabled>
+                    </fields>
+                </general>
+                <configurable_cron translate="label">
+                    <label>Cron Schedule</label>
+                    <sort_order>1</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>0</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <fields>
+                        <frequency translate="label">
+                            <label>Frequency(Server Time)</label>
+                            <frontend_type>text</frontend_type>
+                            <backend_model>reflektion/system_config_cron</backend_model>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment>Set cron job for all websites</comment>
+                        </frequency>
+                    </fields>
+                </configurable_cron>
+                <connect translate="label">
+                    <label>SFTP Connectivity</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>2</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <hostname translate="label">
+                            <label>Hostname</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>1</sort_order>
+                            <show_in_default>0</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment>Enter Hostname provided by Reflektion</comment>
+                        </hostname>
+                        <port translate="label">
+                            <label>Port Number</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>2</sort_order>
+                            <show_in_default>0</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <validate>validate-number</validate>
+                            <comment>Enter the port number provided by Reflektion</comment>
+                        </port>
+                        <path translate="label">
+                            <label>Path</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>3</sort_order>
+                            <show_in_default>0</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment>Enter Path provided by Reflektion</comment>
+                        </path>
+                        <username translate="label">
+                            <label>Username</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>4</sort_order>
+                            <show_in_default>0</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment>Enter SFTP username provided by Reflektion</comment>
+                        </username>
+                        <password translate="label">
+                            <label>Password</label>
+                            <frontend_type>password</frontend_type>
+                            <!--backend_model>adminhtml/system_config_backend_encrypted</backend_model-->
+                            <sort_order>5</sort_order>
+                            <show_in_default>0</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment>Enter SFTP account password provided by Reflektion</comment>
+                        </password>
+                    </fields>
+                </connect>
+				
+                <feedsenabled translate="label">
+                    <label>Data Feeds</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>5</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+
+                        <notice translate="label">
+                            <frontend_type>Text</frontend_type>
+                            <frontend_model>reflektion/adminhtml_system_config_commentText</frontend_model> <!-- render comment as text -->
+                            <comment><![CDATA[
+                                To configure <b>Data Feeds</b>, please select a <b>website</b> scope from the <i>Current Configuration Scope</i> dropdown
+                                ]]>
+                            </comment>
+                            <sort_order>0</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </notice>
+                        <product translate="label">
+                            <label>Product Feed</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>reflektion/system_config_enableToggle</source_model>
+                            <sort_order>2</sort_order>
+                            <show_in_default>0</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </product>
+                        <product_attributes translate="label">
+                            <label>Product Custom Attributes</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>reflektion/system_config_productAttributes</source_model>
+                            <backend_model>reflektion/system_validate_productAttributes</backend_model>
+                            <sort_order>3</sort_order>
+                            <show_in_default>0</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </product_attributes>
+						
+                    </fields>
+                </feedsenabled>
+            </groups>
+        </reflektion_datafeeds>
+    </sections>
+</config>

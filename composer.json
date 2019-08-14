@@ -1,0 +1,16 @@
+{
+    "name": "OpenMageModuleFostering/Reflektion_Individualization_Extension",
+    "type": "magento-module",
+    "license": "Open-Software-License",
+    "homepage": "",
+    "description": "Reflektion Individualization Extension",
+    "authors": [
+    {
+        "name": "Amar",
+        "email": "amar.chokhawala@reflektion.com"
+    }
+],
+    "suggest": {
+        "magento-hackathon/magento-composer-installer": "*"
+    }
+}

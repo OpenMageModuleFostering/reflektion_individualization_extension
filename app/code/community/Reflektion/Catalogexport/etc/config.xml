@@ -1,0 +1,126 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @category     Reflektion
+ * @package      Reflektion_Catalogexport
+ * @website      http://www.reflektion.com/ <http://www.reflektion.com/>
+ * @createdOn    02 Mar 2016
+ * @license      https://opensource.org/licenses/OSL-3.0
+ *
+ */
+-->
+<config>
+
+    <modules>
+        <Reflektion_Catalogexport>
+            <version>1.0.0</version>
+        </Reflektion_Catalogexport>
+    </modules>
+
+    <global>
+        <helpers>
+            <reflektion>
+                <class>Reflektion_Catalogexport_Helper</class>
+            </reflektion>
+        </helpers>
+
+        <blocks>
+            <reflektion>
+                <class>Reflektion_Catalogexport_Block</class>
+            </reflektion>
+        </blocks>
+        <models>
+            <reflektion>
+                <class>Reflektion_Catalogexport_Model</class>
+                <resourceModel>reflektion_mysql4</resourceModel>
+            </reflektion>
+            <core>
+                <rewrite>
+                    <layout>Reflektion_Catalogexport_Model_Layout</layout>
+                </rewrite>
+            </core>
+            <reflektion_mysql4>
+                <class>Reflektion_Catalogexport_Model_Mysql4</class>
+                <entities>
+                    <job>
+                        <table>reflektion_job</table>
+                    </job>
+                </entities>
+            </reflektion_mysql4>
+        </models>
+        <resources>
+            <reflektion_setup>
+                <setup>
+                    <module>Reflektion_Catalogexport</module>
+                    <class>Mage_Catalog_Model_Resource_Eav_Mysql4_Setup</class>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </reflektion_setup>
+            <reflektion_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </reflektion_write>
+            <reflektion_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </reflektion_read>
+        </resources>
+    </global>
+
+    <admin>
+        <routers>
+            <reflektion>
+                <use>admin</use>
+                <args>
+                    <module>Reflektion_Catalogexport</module>
+                    <frontName>reflektion</frontName>
+                </args>
+            </reflektion>
+        </routers>
+    </admin>
+    <adminhtml>
+        <layout>
+            <updates>
+                <reflektion>
+                    <file>reflektion.xml</file>
+                </reflektion>
+            </updates>
+        </layout>
+    </adminhtml>
+
+    <crontab>
+        <jobs>
+            <reflektion_processdailyfeeds>
+                <run>
+                    <model>reflektion/observer::processDailyFeeds</model>
+                </run>
+            </reflektion_processdailyfeeds>
+        </jobs>
+    </crontab>
+
+    <default>
+        <reflektion_datafeeds>
+            <general>
+                <allfeedsenabled>disabled</allfeedsenabled>
+            </general>
+            <connect>
+                <hostname></hostname>
+                <port></port>
+                <username></username>
+                <password></password>
+            </connect>
+            <feedsenabled>
+                <product>enabled</product>
+                <product_attributes></product_attributes>
+            </feedsenabled>
+            <advanced>
+                <!-- 30+ can cause problem -->
+                <attribute_limit>30</attribute_limit>
+            </advanced>
+        </reflektion_datafeeds>
+    </default>
+</config>

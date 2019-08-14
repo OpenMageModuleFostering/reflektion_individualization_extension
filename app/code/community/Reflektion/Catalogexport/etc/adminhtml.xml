@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @category     Reflektion
+ * @package      Reflektion_Catalogexport
+ * @website      http://www.reflektion.com/ <http://www.reflektion.com/>
+ * @createdOn    02 Mar 2016
+ * @license      https://opensource.org/licenses/OSL-3.0
+ * @description  Admin ACL and menu configurations
+ */
+-->
+<config>
+    <menu>
+        <reflektion module="reflektion">
+            <title>Reflektion</title>
+            <sort_order>87</sort_order>
+            <children>
+                <export module="reflektion">
+                    <title>Generate Feeds</title>
+                    <sort_order>0</sort_order>
+                    <action>reflektion/adminhtml_export</action>
+                </export>
+                <job module="reflektion">
+                    <title>Feeds in Queue</title>
+                    <sort_order>0</sort_order>
+                    <action>reflektion/adminhtml_job</action>
+                </job>
+            </children>
+        </reflektion>
+    </menu>
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <reflektion_datafeeds translate="title" module="reflektion">
+                                        <title>Reflektion Data Feeds Configuration Section</title>
+                                        <sort_order>1</sort_order>
+                                    </reflektion_datafeeds>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <reflektion translate="title" module="reflektion">
+                        <title>Reflektion</title>
+                        <sort_order>1000</sort_order>
+                        <children>
+                            <export translate="title">
+                                <title>Reflektion</title>
+                            </export>
+                        </children>
+                    </reflektion>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>

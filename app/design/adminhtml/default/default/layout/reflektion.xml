@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @category     Reflektion
+ * @package      Reflektion_Catalogexport
+ * @website      http://www.reflektion.com/ <http://www.reflektion.com/>
+ * @createdOn    02 Mar 2016
+ * @license      https://opensource.org/licenses/OSL-3.0
+ *
+ */
+-->
+<layout version="0.1.0">
+    <reflektion_adminhtml_export_index>
+        <reference name="content">
+            <block type="reflektion/adminhtml_export" name="export" />
+        </reference>
+    </reflektion_adminhtml_export_index>
+
+    <reflektion_adminhtml_job_index>
+        <reference name="content">
+            <block type="reflektion/adminhtml_job" name="export" />
+        </reference>
+    </reflektion_adminhtml_job_index>
+</layout>
